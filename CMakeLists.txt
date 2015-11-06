@@ -28,6 +28,73 @@ set (makedefs_Sources
         src/monst.c
         src/objects.c)
 add_executable(makedefs ${makedefs_Sources})
+
+add_custom_command(
+        OUTPUT include/date.h
+        COMMAND makedefs -v
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT include/onames.h
+        COMMAND makedefs -o
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT include/pm.h
+        COMMAND makedefs -p
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT dat/quest.dat
+        COMMAND makedefs -m
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT dat/data
+        COMMAND makedefs -z
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT dat/data
+        COMMAND makedefs -d
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT rumors
+        COMMAND makedefs -r
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT quest.dat
+        COMMAND makedefs -q
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT oracles
+        COMMAND makedefs -h
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT dat/dungeon.pdf
+        COMMAND makedefs -e
+        DEPENDS makedefs
+)
+
+add_custom_command(
+        OUTPUT dat/data
+        COMMAND makedefs -d
+        DEPENDS makedefs
+)
+
 # END makedefs
 
 # BEGIN tile2bmp
@@ -39,7 +106,8 @@ set (tile2bmp_Sources
         win/share/tile2bmp.c
         win/share/tiletext.c
         #win/share/tiletxt.c
-        win/share/tilemap.c)
+        #win/share/tilemap.c
+        )
 add_executable(tile2bmp ${tile2bmp_Sources})
 
 set (tile_Sources
