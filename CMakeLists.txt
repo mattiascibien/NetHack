@@ -4,6 +4,10 @@ project (NetHack)
 include_directories(include)
 include_directories(sys/winnt)
 
+
+find_package(BISON)
+find_package(FLEX)
+
 # BEGIN uudecode
 set (uudecode_Sources sys/share/uudecode.c)
 add_executable(uudecode ${uudecode_Sources})
@@ -33,8 +37,9 @@ set (tile2bmp_Sources
         src/monst.c
         src/objects.c
         win/share/tile2bmp.c
-        win/share/tiletext.c)
-        #win/share/tiletxt.c)
+        win/share/tiletext.c
+        #win/share/tiletxt.c
+        win/share/tilemap.c)
 add_executable(tile2bmp ${tile2bmp_Sources})
 
 set (tile_Sources
@@ -56,6 +61,21 @@ set (recover_Sources
 add_executable(recover ${recover_Sources})
 # END recoved
 
+# BEGIN levcomp
+set (levcomp_Sources
+        src/alloc.c
+        src/decl.c
+        src/drawing.c
+        sys/share/lev_lex.c
+        util/lev_main.c
+        sys/share/lev_yacc.c
+        src/monst.c
+        src/objects.c
+        util/panic.c)
+add_executable(levcomp ${levcomp_Sources})
+# END levcomp
+
+
 # BEGIN tilemap
 set (tilemap_Sources
         win/share/tilemap.c)
@@ -66,9 +86,9 @@ add_executable(tilemap ${tilemap_Sources})
 # BEGIN dgncomp
 set (dgncomp_Sources
         src/alloc.c
-        #util/dgn_lex.c
+        sys/share/dgn_lex.c
         util/dgn_main.c
-        #util/dgn_yacc.c
+        sys/share/dgn_yacc.c
         util/panic.c)
 add_executable(dgncomp ${dgncomp_Sources})
 # END dgncomp
