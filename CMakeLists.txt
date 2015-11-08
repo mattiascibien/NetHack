@@ -54,7 +54,7 @@ add_custom_command(
 )
 
 add_custom_command(
-        OUTPUT dat/data
+        OUTPUT src/vis_tab.c include/vis_tab.h
         COMMAND makedefs -z
         DEPENDS makedefs
 )
